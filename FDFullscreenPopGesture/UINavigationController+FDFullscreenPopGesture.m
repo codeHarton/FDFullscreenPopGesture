@@ -226,6 +226,10 @@ typedef void (^_FDViewControllerWillAppearInjectBlock)(UIViewController *viewCon
         
         objc_setAssociatedObject(self, _cmd, panGestureRecognizer, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
     }
+    Class MyNavClass = NSClassFromString(@"MyNavigationController");
+    
+    panGestureRecognizer.enabled = [self isMemberOfClass:MyNavClass];
+    
     return panGestureRecognizer;
 }
 
