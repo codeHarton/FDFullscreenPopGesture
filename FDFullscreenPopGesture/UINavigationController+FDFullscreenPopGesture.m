@@ -238,8 +238,13 @@ typedef void (^_FDViewControllerWillAppearInjectBlock)(UIViewController *viewCon
     if (number) {
         return number.boolValue;
     }
-    self.fd_viewControllerBasedNavigationBarAppearanceEnabled = YES;
-    return YES;
+    NSString *className = NSStringFromClass(self.class);
+    BOOL defaultValue = NO;
+    if ([className containsString:@"MyNavigationController"]) {
+        defaultValue = YES;
+    }
+    self.fd_viewControllerBasedNavigationBarAppearanceEnabled = defaultValue;
+    return defaultValue;
 }
 
 - (void)setFd_viewControllerBasedNavigationBarAppearanceEnabled:(BOOL)enabled
